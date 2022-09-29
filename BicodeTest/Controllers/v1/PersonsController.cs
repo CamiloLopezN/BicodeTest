@@ -12,11 +12,7 @@ namespace BicodeTest.Controllers.v1
     public class PersonsController : ControllerBase
     {
 
-        public PersonsController()
-        {
-
-        }
-
+        public PersonsController() { }
 
         [MapToApiVersion("1.0")]
         [HttpPost]
@@ -141,7 +137,7 @@ namespace BicodeTest.Controllers.v1
         [HttpGet, Route("alive")]
         public string Alive()
         {
-            return "Captain, 1.0 Here. I'm Alive and Kicking!";
+            return "¡La versión 2.0 esta funcionando correctamente!";
         }
 
         private static void NewPersonAssignValues(PersonViewModelInput personViewModel, Persona persona)

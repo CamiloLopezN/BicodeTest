@@ -1,4 +1,5 @@
 using BicodeTest;
+using BicodeTest.Utils;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -43,6 +44,9 @@ builder.Services.AddVersionedApiExplorer(setup =>
 });
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+builder.Services.AddScoped<ValidationFilterAttribute>();
+builder.Services.Configure<ApiBehaviorOptions>(options
+    => options.SuppressModelStateInvalidFilter = true);
 
 var app = builder.Build();
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
