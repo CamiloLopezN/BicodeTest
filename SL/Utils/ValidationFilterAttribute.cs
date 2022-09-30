@@ -1,9 +1,9 @@
-﻿using BicodeTest.models;
+﻿using BE;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Text.Json;
 
-namespace BicodeTest.Utils
+namespace SL.Utils
 {
     public class ValidationFilterAttribute : IActionFilter
     {

@@ -1,8 +1,8 @@
-﻿namespace BicodeTest.models
+﻿namespace BE
 {
     public class ResultStructure
     {
-        public Object Result { set; get; }
+        public object Result { set; get; }
         public string Message { set; get; }
         public int State { get; set; }
     }

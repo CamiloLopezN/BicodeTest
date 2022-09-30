@@ -1,9 +1,11 @@
-﻿namespace BicodeTest.Models.ViewModels
+﻿using BE;
+
+namespace SL.Models.ViewModels
 {
     public class PersonViewModelOutput
     {
-
         private Persona _persona;
+        public int PersonId { get; set; }
         public string PersonDocumentType { get; set; }
         public string PersonGender { get; set; }
         public string? PersonName { get; set; }
@@ -14,37 +16,42 @@
 
         public PersonViewModelOutput(Persona persona)
         {
-            this._persona = persona;
-            this.PersonDocumentType = GetDocumentType();
-            this.PersonGender = GetGender();
-            this.PersonName = persona.Nombre;
-            this.PersonSurname = persona.Apellido;
-            this.PersonDocumentNumber = persona.NumeroDocumento;
-            this.PersonAge = CalculateAge();
-            this.PersonClassification = GetClassification(this.PersonAge);
+            _persona = persona;
+            this.InitializerValues();
         }
 
-        private string GetDocumentType()
+        private void InitializerValues()
+        {
+            PersonId = _persona.Id;
+            PersonDocumentType = GetDocumentType();
+            PersonGender = GetGender();
+            PersonName = _persona.Nombre;
+            PersonSurname = _persona.Apellido;
+            PersonDocumentNumber = _persona.NumeroDocumento;
+            PersonAge = CalculateAge();
+            PersonClassification = GetClassification(PersonAge);
+        }
+        public string GetDocumentType()
         {
             return _persona.IdDocumento == 1 ? "CC" : _persona.IdDocumento == 2 ? "TI" : "CE";
         }
 
-        private string GetGender()
+        public string GetGender()
         {
             return _persona.IdGenero == 1 ? "Masculino" : _persona.IdGenero == 2 ? "Femenino" : "Otro";
         }
 
-        private int CalculateAge()
+        public int CalculateAge()
         {
             return DateTime.Today.AddTicks(-_persona.FechaNacimiento.Ticks).Year - 1;
         }
 
-        private string GetClassification(int age)
+        public string GetClassification(int age)
         {
             return age >= 0 && age <= 14 ? "Niño" : age >= 15 && age <= 20 ? "Adolescente"
                 : age >= 21 && age <= 60 ? "Mayor de edad" : "Tercera edad";
         }
+
+
     }
-
-
 }

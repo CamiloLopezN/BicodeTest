@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using BE;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BicodeTest.Models
+namespace DAL.DataBaseConnection
 {
     public partial class BI_TESTGENContext : DbContext
     {
@@ -22,11 +23,6 @@ namespace BicodeTest.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configurationRoot = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-                optionsBuilder.UseSqlServer(configurationRoot.GetConnectionString("SQL"));
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

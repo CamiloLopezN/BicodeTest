@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BicodeTest.Models
+namespace BE
 {
     public partial class Persona
     {
@@ -14,8 +14,26 @@ namespace BicodeTest.Models
         public DateTime FechaNacimiento { get; set; }
         public DateTime? FechaCreacion { get; set; }
         public DateTime? FechaActualizacion { get; set; }
-
         public virtual Documento? IdDocumentoNavigation { get; set; }
         public virtual Genero? IdGeneroNavigation { get; set; }
+
+        public Persona(int id, int? idDocumento, int? idGenero, string? nombre, string? apellido,
+            long? numeroDeDocumento, DateTime fechaNacimiento, DateTime? fechaActualizacion)
+        {
+            Id = id;
+            IdDocumento = idDocumento;
+            IdGenero = idGenero;
+            Nombre = nombre;
+            Apellido = apellido;
+            NumeroDocumento = numeroDeDocumento;
+            FechaNacimiento = fechaNacimiento;
+            FechaActualizacion = fechaActualizacion;
+        }
+
+        public Persona()
+        {
+
+        }
+
     }
 }

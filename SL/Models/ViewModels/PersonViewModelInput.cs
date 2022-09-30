@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BicodeTest.Models.ViewModels
+namespace SL.Models.ViewModels
 {
     public class PersonViewModelInput
     {
+
         [Required, Range(1, 3)]
         public int? PersonIdDocument { get; set; }
 
